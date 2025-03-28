@@ -1,0 +1,959 @@
+\includegraphics[width=3.5in,height=1.15625in]{media/image1.png}
+
+\textbf{School of Computer Science Engineering and Information Systems
+(SCORE)}
+
+\textbf{Winter Semester 2024-2025}
+
+\textbf{ISWE207P-OBJECT ORIENTED ANALYSIS AND DESIGN LAB}
+
+System Design Document
+
+\textbf{Matrimonial Site}
+
+\textbf{RAVIRAGHUL S 23MIS0088}
+
+\textbf{L45+L46}
+
+\textbf{Dr. Magesh G, Assistant Professor Sr. Grade 2}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3683}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6317}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Document ID & SYSTEM DESIGN-v0.1 \\
+Version Number & 0.1 \\
+Issue Date & MARCH , 2025 \\
+Classification & Public \\
+\end{longtable}
+
+Copyright Notice
+
+© EternaMatch Solutions, (2023-2025)
+
+All Rights Reserved
+
+The information contained in this document is the property of
+EternaMatch Solutions. No part of this document may be reproduced,
+stored in a retrieval system, or transmitted in any form, or by any
+means; mechanical, photocopying, recording, or otherwise, without the
+prior written consent of EternaMatch Solutions. Under the law, copying
+includes translating into another language or format. Legal action will
+be taken against any infringement.
+
+The information contained in this document is subject to change without
+notice and does not carry any contractual obligation for EternaMatch
+Solutions. EternaMatch Solutions reserves the right to make changes to
+any products or services described in this document at any time without
+notice. EternaMatch Solutions shall not be held responsible for the
+direct or indirect consequences of the use of the information contained
+in this document.
+
+\textbf{Revision History}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1710}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1267}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.4223}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2799}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Date} & \textbf{Version} & \textbf{Description} & \textbf{Author
+(s)} \\
+04/01/2020 & 0.1 & Draft Version & John Doe \\
+& & & \\
+& & & \\
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4713}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2855}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2432}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Reviewed By (Customer)} & \textbf{Signature} & \textbf{Date} \\
+& & \\
+& & \\
+& & \\
+& & \\
+& & \\
+\end{longtable}
+
+The reviewer signoff shall signify the recommendation for acceptance of
+this document.
+
+\textbf{Sign Off}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4997}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5003}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Prepared By}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Acknowledged By}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+RAVIRAGHUL S & \textless Name\textgreater{} \\
+Title: STUDENT & Title: \textless Position\textgreater{} \\
+EternaMatch Solutions & COMPANYNAME \\
+Date:28/3/2025 & Date: \\
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4999}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5001}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Accepted By}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Accepted By}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\textless Name\textgreater{} & \textless Name\textgreater{} \\
+Title: \textless Position\textgreater{} & Title:
+\textless Position\textgreater{} \\
+\textless Customer Company Name \textgreater{} & \textless Customer
+Company Name \textgreater{} \\
+Date: & Date: \\
+\end{longtable}
+
+\textbf{Table of Contents}
+
+\hyperref[list-of-tables]{List of Tables \hyperref[list-of-tables]{7}}
+
+\hyperref[list-of-figures]{List of Figures
+\hyperref[list-of-figures]{8}}
+
+\hyperref[introduction]{1 Introduction \hyperref[introduction]{9}}
+
+\hyperref[purpose-of-document]{1.1 Purpose of Document
+\hyperref[purpose-of-document]{9}}
+
+\hyperref[document-scope]{1.2 Document Scope
+\hyperref[document-scope]{9}}
+
+\hyperref[in-scope]{1.2.1 In-Scope \hyperref[in-scope]{9}}
+
+\hyperref[out-of-scope]{1.2.2 Out-of-Scope \hyperref[out-of-scope]{9}}
+
+\hyperref[assumptions]{1.2.3 Assumptions \hyperref[assumptions]{9}}
+
+\hyperref[methodology-tools-and-approach-1]{1.3 Methodology, Tools, and
+Approach \hyperref[methodology-tools-and-approach-1]{9}}
+
+\hyperref[acronyms-and-abbreviations-1]{1.4 Acronyms and Abbreviations
+\hyperref[acronyms-and-abbreviations-1]{9}}
+
+\hyperref[design-overview]{2 Design Overview
+\hyperref[design-overview]{10}}
+
+\hyperref[background-information]{2.1 Background Information
+\hyperref[background-information]{10}}
+
+\hyperref[system-evolution-description]{2.2 System Evolution Description
+\hyperref[system-evolution-description]{10}}
+
+\hyperref[required-environment-1]{2.3 Required Environment
+\hyperref[required-environment-1]{10}}
+
+\hyperref[constraints]{2.4 Constraints \hyperref[constraints]{10}}
+
+\hyperref[design-trade-offs]{2.5 Design Trade-offs
+\hyperref[design-trade-offs]{11}}
+
+\hyperref[structural-family-diagrams]{3 Structural Family Diagrams
+\hyperref[structural-family-diagrams]{11}}
+
+\hyperref[_Toc287863409]{3.1 Class Diagram}
+
+\hyperref[_Toc287863410]{3.2 Object Diagram}
+
+\hyperref[_Toc287863411]{3.3 Package Diagram}
+
+\hyperref[behavioral-family-diagrams]{4 Behavioral Family Diagrams}
+
+4.1 Use Case Diagram
+
+4.2 Use Case Descriptions
+
+4.3 State Chart Diagram
+
+4.4 Activity Diagram
+
+4.5 Sequence Diagram
+
+4.6 Collaboration Diagram
+
+\hyperref[_Toc287863413]{5 Architectural Family Diagrams}
+
+\hyperref[_Toc287863414]{5.1 Deployment Diagram}
+
+\hyperref[_Toc287863415]{5.2 Component Diagram}
+
+\hyperref[_Toc287863431]{Appendix}
+
+\section{List of Tables}\label{list-of-tables}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2787}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3606}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3607}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\section{\texorpdfstring{Table No. }{Table No. }}\label{table-no.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\section{\texorpdfstring{ Table Name }{ Table Name }}\label{table-name}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\section{\texorpdfstring{ Page No.}{ Page No.}}\label{page-no.}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{Table 1 }{Table 1 }}\label{table-1}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{ In-Scope Features of the System
+}{ In-Scope Features of the System }}\label{in-scope-features-of-the-system}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{ 8}{ 8}}\label{section}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{Table 2 }{Table 2 }}\label{table-2}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{ Out-of-Scope Features
+}{ Out-of-Scope Features }}\label{out-of-scope-features}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{ 9}{ 9}}\label{section-1}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{Table 3 }{Table 3 }}\label{table-3}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\subsection{\texorpdfstring{ Methodology, Tools, and
+Approach}{ Methodology, Tools, and Approach}}\label{methodology-tools-and-approach}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{ 10}{ 10}}\label{section-2}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{Table 4 }{Table 4 }}\label{table-4}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\section{Acronyms and Abbreviations}\label{acronyms-and-abbreviations}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{ 11}{ 11}}\label{section-3}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{Table 5 }{Table 5 }}\label{table-5}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{ Required
+Environment}{ Required Environment}}\label{required-environment}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\section{\texorpdfstring{ 12}{ 12}}\label{section-4}
+\end{minipage} \\
+Table 6 & Design Trade-offs & 13 \\
+Table 7 & Requirements Traceability Matrix & 21 \\
+\end{longtable}
+
+\section{List of Figures}\label{list-of-figures}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3334}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Figure No.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Figure Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Page No.
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Figure 1 & Class Diagram & 14 \\
+Figure 2 & Use case Diagram & 16 \\
+Figure 3 & Sequence Diagram & 19 \\
+\end{longtable}
+
+\section{1.Introduction}\label{introduction}
+
+This document presents the System Design Document (SDD) for EternaMatch
+Solutions, a matrimonial website designed to facilitate matchmaking by
+connecting individuals and families in search of suitable marriage
+alliances. The system aims to provide a user-friendly, secure, and
+efficient platform that allows users to register, search for matches,
+communicate, and proceed with matrimonial alliances while maintaining
+data privacy and security.
+
+\subsection{Purpose of Document}\label{purpose-of-document}
+
+The purpose of this document is to define the overall system
+architecture and design of EternaMatch Solutions. It provides details
+about system components, structural and behavioral diagrams, design
+choices, constraints, and methodologies used in developing the system.
+The document serves as a reference for developers, testers, and
+stakeholders involved in implementing and maintaining the system.
+
+\subsection{1.2 Document Scope}\label{document-scope}
+
+This document outlines the architectural, structural, and behavioral
+design of the matrimonial platform. It includes class diagrams, use case
+diagrams, sequence diagrams, activity diagrams, and deployment details.
+
+\subsubsection{In-Scope}\label{in-scope}
+
+The system will include the following essential features to ensure an
+efficient and secure matchmaking platform.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4999}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5001}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Feature
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+User Registration \& Profile Creation & Users (Bride, Groom,
+Parents/Guardians) can create and manage profiles with personal details,
+preferences, and photos. \\
+Matchmaking \& Search Filters & Provides advanced search filters (age,
+caste, religion, profession, location, etc.) to find suitable
+matches. \\
+Profile Verification & Ensures authenticity with email, phone, and
+document verification for trust and security. \\
+Private Messaging \& Communication & Users can connect with matched
+profiles through private messages and requests. \\
+Subscription-Based Premium Features & Paid members can access features
+like unlimited messaging, verified profiles, and priority listing. \\
+Profile Privacy \& Security Settings & Users can control visibility,
+hide profiles from certain users, and manage contact information
+access. \\
+Admin Moderation \& Fraud Detection & Admin panel to monitor, verify,
+and handle fake or suspicious profiles. \\
+Third-Party Payment Integration & Secure payment gateway for premium
+subscriptions using credit/debit cards, UPI, or net banking. \\
+\end{longtable}
+
+\subsubsection{Out-of-Scope}\label{out-of-scope}
+
+The system will not include the following functionalities as they are
+beyond the scope of this project.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4999}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5001}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Feature
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Offline Matchmaking Services & The system does not provide physical or
+in-person matchmaking services. \\
+Marriage Registration \& Legal Documentation & The platform does not
+handle legal marriage registration or documentation. \\
+Personal Background Verification & The system does not conduct in-depth
+criminal background checks or financial verification. \\
+Offline Payment Methods & Payments through cash, cheque, or bank deposit
+are not supported; only digital transactions are allowed. \\
+Live Video Chat & The platform does not include built-in live video
+calling features for communication. \\
+Matrimonial Counseling Services & The system does not offer professional
+marriage counseling or relationship advice. \\
+Event Management \& Wedding Planning & The platform does not provide
+wedding planning or event management services. \\
+Third-Party Data Sharing & User data will not be shared with third-party
+agencies or advertisers without consent. \\
+\end{longtable}
+
+\subsubsection{Assumptions}\label{assumptions}
+
+\begin{itemize}
+\item
+  Users provide accurate and truthful information during registration.
+\item
+  The platform is accessible through web and mobile applications.
+\item
+  Payment processing will be handled via third-party payment gateways.
+\item
+  The platform ensures data security and follows industry best
+  practices.
+\end{itemize}
+
+\subsection{\texorpdfstring{1.3 \textbf{Methodology, Tools, and
+Approach}}{1.3 Methodology, Tools, and Approach}}\label{methodology-tools-and-approach-1}
+
+The development of EternaMatch Solutions follows the Agile Software
+Development Model, allowing iterative releases with continuous feedback.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4999}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5001}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Category}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Tools/Technologies}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Programming Languages & Java, Python \\
+Database & MySQL, PostgreSQL \\
+Frameworks & Spring Boot (Backend), React.js (Frontend) \\
+UML Modeling & Visual Paradigm, Lucidchart \\
+Deployment & AWS Cloud Services, Docker \\
+Testing & Selenium, JUnit \\
+\end{longtable}
+
+\subsection{\texorpdfstring{1.4 \textbf{Acronyms and
+Abbreviations}}{1.4 Acronyms and Abbreviations}}\label{acronyms-and-abbreviations-1}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4999}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5001}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Acronym
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+GUI & Graphical User Interface \\
+SDD & System Design Document \\
+DBMS & Database Management System \\
+UML & Unified Modeling Language \\
+API & Application Programming Interface \\
+\end{longtable}
+
+\section{\texorpdfstring{ Design
+Overview}{ Design Overview}}\label{design-overview}
+
+\subsection{2.1 Background Information}\label{background-information}
+
+The matrimonial site, EternalBond, is an online platform designed to
+facilitate matchmaking for individuals seeking life partners. The system
+allows users (Bride, Groom, Parents, Guardians) to register, create
+profiles, search for compatible matches based on preferences, and
+communicate securely. Advanced filtering options, AI-based match
+suggestions, and profile verification features enhance user experience
+and trust.
+
+\subsection{2.2 System Evolution
+Description}\label{system-evolution-description}
+
+The system has evolved from traditional newspaper advertisements and
+offline matchmaking services to an advanced online platform. Over time,
+new features have been incorporated, such as:
+
+\begin{itemize}
+\item
+  AI-driven matchmaking for improved recommendations.
+\item
+  Video profile verification to enhance authenticity.
+\item
+  In-app messaging and video calls for secure communication.
+\item
+  Blockchain-based identity verification to prevent fraud.
+\end{itemize}
+
+Future updates may include:
+
+\begin{itemize}
+\item
+  Integration with social media for better profile insights.
+\item
+  Multilingual support for a diverse user base.
+\item
+  Voice-assisted matchmaking for accessibility improvements.
+\end{itemize}
+
+\subsection{2.3 Required Environment}\label{required-environment-1}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2993}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7007}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Product/Solution & Environment \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+EternaMatch Solutions
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+\end{minipage} & \textbf{Production} - Cloud-based deployment
+(AWS/Azure) \\
+& \textbf{Development} - Local server for testing and debugging \\
+& \textbf{Staging} - Pre-release environment for QA testing \\
+\end{longtable}
+
+\subsection{2.4 Constraints}\label{constraints}
+
+The system is subject to several constraints that influence its design
+and functionality. The hardware and software environment must support
+both desktop and mobile devices with a responsive user interface to
+ensure accessibility. In terms of the end-user environment, the platform
+should be easy to navigate for users with limited digital literacy.
+Resource availability is another key factor, as high traffic demands may
+require scalable cloud hosting solutions. Additionally, the system must
+comply with legal and regulatory requirements, including GDPR for data
+privacy and the IT Act 2000 for Indian users. Interoperability is
+crucial, requiring seamless integration with payment gateways for
+premium memberships. Security measures must include two-factor
+authentication (2FA) to protect user accounts from unauthorized access.
+
+The system\textquotesingle s performance should be optimized to handle
+over 100,000 concurrent users without slowdowns. Lastly, considering
+network limitations, the platform should function effectively even on
+low-bandwidth internet connections to ensure uninterrupted access for
+all users.
+
+\subsection{2.5 Design Trade-offs}\label{design-trade-offs}
+
+Design trade-offs were carefully considered to balance performance,
+security, user experience, and cost-effectiveness. Performance vs.
+Security was a key factor, where implementing strong encryption for
+messaging slightly increased response time but ensured data protection.
+In terms of Customization vs. Simplicity, providing too many filtering
+options could make the user interface complex, so a balance was
+maintained to enhance usability.
+
+Another crucial trade-off was Cost vs. Scalability, where cloud hosting,
+though expensive, was chosen to ensure smooth performance under high
+traffic conditions. Lastly, Feature-rich vs. Lightweight was addressed
+by integrating AI-based matchmaking, which demands more resources but
+significantly improves match accuracy, enhancing the overall user
+experience.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4999}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5001}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Trade-off Category}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Description}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Performance vs. Security & Implementing strong encryption for messaging
+slightly increases response time. \\
+Customization vs. Simplicity & Too many filtering options can make the
+UI complex, so a balance was maintained. \\
+Cost vs. Scalability & While cloud hosting is expensive, it ensures
+smooth performance under high traffic. \\
+Feature-rich vs. Lightweight & AI-based matchmaking requires more
+resources, but enhances match accuracy. \\
+\end{longtable}
+
+\section{\texorpdfstring{Structural Family Diagrams
+}{Structural Family Diagrams }}\label{structural-family-diagrams}
+
+\subsection{3.1 Class Diagram}\label{class-diagram}
+
+The class diagram represents the core entities of the matrimonial system
+and their relationships. It includes key classes such as User, Bride,
+Groom, Parent, Matchmaking, Chat, and Payment, each with attributes and
+methods.The User class serves as the primary entity, with attributes
+such as userID, name, email, and phone number, and is associated with
+Bride, Groom, and Parent subclasses. The Bride and Groom classes inherit
+from User and include attributes related to religion, caste, profession,
+and education, with methods to view matches, send interest, and accept
+requests.
+
+The Parent class allows a guardian to manage profiles and approve
+matches. The Matchmaking class facilitates compatibility calculations
+and sending proposals between matched profiles. The Chat class enables
+users to communicate via messages, while the Payment class handles
+transactions related to premium services, including methods for making
+and refunding payments. The diagram provides a structured blueprint for
+implementing the system's object-oriented design, ensuring seamless
+matchmaking, user interaction, and secure
+transactions.\includegraphics[width=5.77014in,height=4.72083in]{media/image2.png}
+
+\subsection{3.2 Object Diagram}\label{object-diagram}
+
+An object diagram is a snapshot of the matrimonial system at a
+particular moment, showing real instances of classes and their
+relationships. It provides a clearer view of how objects interact at
+runtime.
+
+For example, it may show a User object representing a bride named
+"Ananya" linked to a Groom object named "John" Both objects are
+associated with a Matchmaking object that holds their compatibility
+score and match status. A Parent object, such as "Mr. Sharma," is
+connected to the Bride object, indicating parental involvement in the
+match approval process.
+
+Additionally, a Chat object may show an ongoing conversation between
+Ananya and Rahul, while a Payment object represents a transaction for a
+premium membership. This helps in understanding how the system's data is
+structured in a live environment, reflecting real-time interactions
+between users, matchmaking processes, and payment transactions.
+
+\subsection{3.3 Package Diagram}\label{package-diagram}
+
+The package diagram organizes the matrimonial system into different
+modules, grouping related classes together. This modular approach helps
+in maintaining and scaling the system efficiently.
+
+For the matrimonial system, key packages may include user management,
+which handles user registration, profile updates, and authentication;
+matchmaking, which manages profile searches, compatibility calculations,
+and proposal handling; communication, which includes chat
+functionalities for user interactions; payment processing, which deals
+with premium memberships and transaction management; and parental
+approval, which allows parents or guardians to review and approve
+matches.
+
+\section{Behavioral Family Diagrams}\label{behavioral-family-diagrams}
+
+\subsection{4.1 Use Case Diagram}\label{use-case-diagram}
+
+The use case diagram illustrates the interactions between different
+users and the matrimonial system, outlining key functionalities. It
+includes actors such as User, Bride, Groom, Parent, Admin, Payment
+Gateway, and Notification System. These actors interact with use cases
+like Register Account, Login, Manage Profile, Search Profile, Express
+Interest, Accept or Reject Interest, Chat and Messaging, Upgrade to
+Premium, and Payment Processing. The diagram helps in identifying system
+requirements from a user perspective and provides a clear view of how
+different users engage with the system.
+
+\includegraphics[width=5.67616in,height=3.91504in]{media/image3.png}
+
+4.2 \textbf{Use Case Descriptions}
+
+\textbf{Use Case: Express Interest}
+
+\textbf{Actors:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  User
+\item
+  System
+\end{enumerate}
+
+\textbf{Pre-Conditions:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The user must be registered and logged into their account.
+\item
+  The user must have a completed profile.
+\item
+  The user must have searched for profiles before expressing interest.
+\end{enumerate}
+
+\textbf{Post-Conditions:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The recipient of the interest request is notified.
+\item
+  The user can only chat if the interest is accepted.
+\item
+  A record of the expressed interest is maintained in the system.
+\end{enumerate}
+
+\textbf{Main Flow (Basic Flow):}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The user selects the "Express Interest" option.
+\item
+  The system verifies if the user has searched for profiles.
+\item
+  The user selects a profile and confirms the interest.
+\item
+  The system sends a notification to the selected user.
+\item
+  If the recipient accepts, the system enables messaging between the two
+  users.
+\end{enumerate}
+
+\textbf{Alternative Flow:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Incomplete Profile:} If the user has not completed their
+  profile, the system prompts them to do so before proceeding.
+\item
+  \textbf{Interest Already Sent:} If the user has already expressed
+  interest in the same profile, the system displays an error message.
+\item
+  \textbf{Blocked User:} If the recipient has blocked the user, the
+  system prevents the action and notifies the sender.
+\end{enumerate}
+
+4.3 \textbf{State Chart Diagram}
+
+The state chart diagram represents the different states a user profile
+goes through in the matrimonial system. It starts with the Unregistered
+state, where a new user has not yet created an account. Upon successful
+registration, the profile enters the Inactive state until the user logs
+in for the first time. When the user logs in, the profile transitions to
+the Active state, allowing the user to manage their profile, search for
+matches, and express interest.
+
+If the user upgrades to a premium membership, the profile moves to the
+Premium state, unlocking additional features like unlimited profile
+views and direct messaging. If the user is reported for misconduct or
+violates platform policies, the profile enters the Suspended state,
+restricting further actions. Users in this state may request a review to
+reactivate their account.
+
+If a user decides to delete their account or the admin removes it due to
+violations, the profile transitions to the Deleted state, marking it as
+permanently removed from the system. The state chart diagram helps in
+understanding the lifecycle of a user profile and how it transitions
+based on various actions.
+
+4.4 \textbf{An activity Diagram}
+
+The activity diagram illustrates the workflow of the matrimonial system,
+such as user registration and matchmaking. It starts with \textbf{User
+Registration}, followed by \textbf{Profile Creation}, where users input
+their personal details. Next, users proceed to \textbf{Search Profiles},
+where they can filter potential matches based on preferences.
+
+Once a user finds a suitable match, they can \textbf{Express Interest},
+which notifies the other user. If the recipient accepts, the process
+moves to \textbf{Chat and Messaging}, allowing further interaction.
+Users can also choose to \textbf{Upgrade to Premium} to unlock
+additional features like unlimited profile views and direct messaging.
+
+If a user decides to delete their account, the process moves to
+\textbf{Account Deletion}, leading to permanent removal. The diagram
+helps visualize the step-by-step flow of matchmaking and user
+interactions within the system.
+
+4.5 \textbf{Sequence Diagram}
+
+The sequence diagram represents the interactions between different
+components of the matrimonial system, including the user, system,
+matching service, chat service, and payment service.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The process begins with \textbf{User Registration}, followed by
+  \textbf{Login and Authentication}.
+\item
+  The user creates a profile, and the system confirms successful profile
+  creation.
+\item
+  The user searches for matches based on preferences, and the
+  \textbf{Matching Service} retrieves and returns relevant profiles.
+\item
+  The system displays matched profiles, allowing the user to send an
+  \textbf{Interest Request} to a selected match.
+\item
+  The recipient can \textbf{Accept or Reject} the request. If accepted,
+  users can exchange messages through the \textbf{Chat Service}.
+\item
+  If the user opts for premium features, they initiate a \textbf{Payment
+  Transaction}, which is processed by the \textbf{Payment Service}.
+\item
+  The process concludes with a \textbf{Payment Confirmation} message.
+\end{enumerate}
+
+This diagram helps in understanding the step-by-step interaction between
+different components during matchmaking and communication in the system.
+
+\includegraphics[width=5.77014in,height=4.30208in]{media/image4.png}
+
+4.6 \textbf{Collaboration Diagram}
+
+The collaboration diagram illustrates how objects interact within the
+matrimonial system. It shows relationships between the \textbf{User,
+System, Matching Service, Chat Service, and Payment Service}, detailing
+message exchanges and responses.
+
+For example, when a user \textbf{registers and logs in}, the system
+validates credentials and stores user data. When searching for matches,
+the \textbf{System communicates with the Matching Service} to retrieve
+suitable profiles. If a user expresses interest, the \textbf{Chat
+Service} facilitates communication between matched users. For premium
+features, the \textbf{Payment Service} processes transactions and
+confirms successful payments.
+
+This diagram helps analyze how different components work together to
+ensure seamless matchmaking, communication, and transaction processing.
+
+\section{Architectural Family
+Diagrams}\label{architectural-family-diagrams}
+
+\subsection{5.1 Component Diagram}\label{component-diagram}
+
+The component diagram represents different software modules and their
+dependencies in the \textbf{matrimonial system}.
+
+It includes components such as the \textbf{Authentication Module}, which
+handles user login and registration, the \textbf{Profile Management
+Module} for updating and managing user details, the \textbf{Matching
+Engine} for finding suitable profiles, the \textbf{Chat Service} for
+communication between users, the \textbf{Payment Module} for processing
+premium subscriptions, the \textbf{Notification Service} for alerts and
+updates, and the \textbf{Database Connector} for data storage and
+retrieval.
+
+This diagram ensures clarity in system design, helping developers manage
+code organization efficiently and understand the relationships between
+different components.
+
+\subsection{5.2 Deployment Diagram}\label{deployment-diagram}
+
+\protect\phantomsection\label{_Toc287863431}{}The deployment diagram
+illustrates the physical architecture of the \textbf{matrimonial
+system}, showing how software components are distributed across
+hardware.
+
+It includes elements such as the \textbf{User's Device (Mobile/Web App),
+Application Server, Matching Service, Chat Service, Database Server, and
+Payment Gateway}. Users interact with the system through a web or mobile
+application, which communicates with the \textbf{Application Server} to
+handle login, profile management, and matchmaking. The \textbf{Matching
+Service} retrieves suitable profiles, while the \textbf{Chat Service}
+manages user conversations. The \textbf{Database Server} stores user
+details and interactions, and the \textbf{Payment Gateway} processes
+premium subscriptions.
+
+This diagram helps in planning the system's infrastructure, ensuring
+scalability and efficient performance.
+
+\section{}\label{section-5}
+
+\section{\texorpdfstring{6.Appendix }{6.Appendix }}\label{appendix}
+
+\textbf{6.1 Requirements Traceability Matrix}
+
+The \textbf{Requirements Traceability Matrix (RTM)} ensures that all
+system requirements for the \textbf{matrimonial site} are properly
+implemented and tested. It links functional requirements to design
+specifications and test cases, ensuring completeness and validation.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1999}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Requirement ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Requirement Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Design Component
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Test Case ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Status
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+RQ-001 & Users must be able to register and log in securely. &
+Authentication Module & TC-001 & Implemented \\
+RQ-002 & Users should be able to search for matching profiles. &
+Matching Service & TC-002 & Implemented \\
+RQ-003 & Users must be able to express interest in a profile. & Interest
+Management & TC-003 & Implemented \\
+RQ-004 & Users should be able to chat after mutual interest. & Chat
+Service & TC-004 & Implemented \\
+RQ-005 & Users should be able to upgrade to premium. & Payment Module &
+TC-005 & Implemented \\
+RQ-006 & Notifications should be sent for profile interests and
+messages. & Notification System & TC-006 & Implemented \\
+RQ-007 & Admin must be able to verify and manage profiles. & Admin Panel
+& TC-007 & Implemented \\
+\end{longtable}
+
+\textbf{6.2 Glossary of Terms}
+
+\begin{itemize}
+\item
+  \textbf{Authentication} -- The process of verifying a
+  user\textquotesingle s identity during registration and login.
+\item
+  \textbf{Matching Service} -- A system that finds and displays user
+  profiles based on preferences.
+\item
+  \textbf{Interest Expression} -- The action of showing interest in a
+  matched profile.
+\item
+  \textbf{Chat Service} -- A feature allowing users to communicate after
+  mutual interest is established.
+\item
+  \textbf{Premium Subscription} -- A paid membership that unlocks
+  additional features.
+\item
+  \textbf{Notification System} -- A service that sends alerts for
+  profile matches, messages, and other interactions.
+\item
+  \textbf{Payment Module} -- A system that processes transactions for
+  premium membership upgrades.
+\item
+  \textbf{Database} -- A structured storage system that holds user
+  profiles, messages, and transaction details.
+\end{itemize}
